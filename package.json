@@ -1,0 +1,23 @@
+{
+    "name": "mean_2023",
+    "version": "1.0.0",
+    "description": "Simple MEAN example",
+    "repository": "https://github.com/Thoughtscript/mean_2023",
+    "main": "main.js",
+    "engines": {
+        "node": "=18.13.0"
+    },
+    "scripts": {
+        "ang": "ng serve -o",
+        "server": "node node/main.js",
+        "stop-win": "Taskkill /IM node.exe /F",
+        "stop-unix": "killall node"
+    },
+    "dependencies": {
+        "cookie-parser": "=1.4.6",
+        "cors": "=2.8.5",
+        "express": "=4.18.1",
+        "mongodb": "=4.13.0",
+        "morgan": "=1.10.0"
+    }
+}
