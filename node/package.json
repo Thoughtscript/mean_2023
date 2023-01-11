@@ -7,12 +7,7 @@
     "engines": {
         "node": "=18.13.0"
     },
-    "scripts": {
-        "ang": "ng serve -o",
-        "server": "node node/main.js",
-        "stop-win": "Taskkill /IM node.exe /F",
-        "stop-unix": "killall node"
-    },
+    "scripts": { },
     "dependencies": {
         "cookie-parser": "=1.4.6",
         "cors": "=2.8.5",

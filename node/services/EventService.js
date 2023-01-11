@@ -7,6 +7,11 @@
  * EventService.
  */
 
-module.exports = {
+const E = require('../domain/Events')
 
+module.exports = {
+    GET: async () => {
+        const events = await E.FETCH_EVENTS()
+        return events
+    }
 }

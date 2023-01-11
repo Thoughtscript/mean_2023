@@ -7,8 +7,9 @@
  * Config.
  */
 
-const ME_CONFIG_MONGODB_ADMINUSERNAME = 'root'
-const ME_CONFIG_MONGODB_ADMINPASSWORD = 'example'
+// Note that these correspond to the non-root user/password in docker-compose.yml
+const MONGODB_USERNAME = 'testuser'
+const MONGODB_PASSWORD = 'testpass'
 
 module.exports = {
     SERVER: {
@@ -20,7 +21,8 @@ module.exports = {
     },
 
     DB: {
-        DEFAULT_DB: "testdb",
-        MONGO_URI: `mongodb+srv://${ME_CONFIG_MONGODB_ADMINUSERNAME}:${ME_CONFIG_MONGODB_ADMINPASSWORD}@mongo:27017/?retryWrites=true&writeConcern=majority`
+        DEFAULT_DB: "testdatabase",
+        // Must authenticate against the specified testdatabase with the credentials above
+        MONGO_URI: `mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@localhost:27017/testdatabase`
     }
 }

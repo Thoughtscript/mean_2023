@@ -9,28 +9,66 @@
 
 const { MongoClient } = require("mongodb")
 const C = require('../config')
-
-// Singleton client
-let client
+ 
+// Singleton client and db
+let client, db
 
 const getClient = async () => {
     try {
         if (client === undefined) {
+            console.log(`Initializing new MongoClient with connection: ${C.DB.MONGO_URI}`)
             client = new MongoClient(C.DB.MONGO_URI)
-            await client.connect()
         }
     } catch (ex) {
-        console.error(ex)
+        console.error(`Exception encountered: ${ex}!`)
     }
-    return client
+
+    await client.connect()
+    console.log("MongoDB client connected...")
+    return await client
+}
+
+const getDb = async () => {
+    try {
+        if (db === undefined) {
+            let client = await getClient()
+            db = await client.db(C.DB.DEFAULT_DB)
+        }
+    } catch (ex) {
+        console.error(`Exception encountered: ${ex}!`)
+    }
+
+    return db
 }
 
 module.exports = {
     // Query Collection
     Q_C: async (collection) => {
-        let db = await getClient().db(C.DB.DEFAULT_DB)
+        let db = await getDb()
         let db_collection = db.collection(collection)
         return db_collection.find()
+    },
+
+    Q_COL: async (collection) => {
+        let client = await getClient()
+        let db = await client.db(C.DB.DEFAULT_DB)
+        await db.createCollection(collection)
+    },
+
+    /*
+     * Helpers
+     */
+
+    // Get collection
+    COL: async (collection) => {
+        let db = await getDb()
+        return db.collection(collection)
+    },
+
+    // Get client
+    C: async () => {
+        let client = await getClient()
+        return client
     },
 
     // Ensure the DB connection is closed where needed.

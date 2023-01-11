@@ -18,19 +18,22 @@ module.exports = {
 
     JSON_OBJ_FACTORY: (uuid, name, msg) => ({ uuid: uuid, name: name, msg: msg}),
 
-    FETCH_EVENTS: async() => {
-        let cursor = await require('../helpers/mongo').Q_C('Events')
-
-        let events = []
+    FETCH_EVENTS: async () => {
+        const cursor = await require('../helpers/mongo').Q_C('Events')
         
-        cursor.forEach((e) => {
-            const uuid = e.uuid
-            const name = e.name
-            const msg = e.msg
+        let events = []
 
-            events.push(new Event(uuid, name, msg))
-        })
-
+        const A = await  cursor.toArray()
+        
+        for (let i = 0; i < A.length; i++) {
+            const uuid = A[i].uuid
+            const name = A[i].name
+            const msg = A[i].msg
+        
+            const ev = new Event(uuid, name, msg)
+            events.push(ev)
+        }
+    
         return events
     }
 }

@@ -18,7 +18,7 @@ try {
   // Initialize Main Thread/Process
   require('./domain/Prepopulate').INITIALIZE_DB().then(success => {
       // Spin Up Cluster
-      H.createHttpsServer() //cluster
+      H.createHttpsServer() //cluster tbd
   })
 
 } catch (ex) {
