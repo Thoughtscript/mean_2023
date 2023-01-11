@@ -20,6 +20,7 @@ module.exports = {
 
       .use(require('cookie-parser')())
 
+      // Set CORS
       .use(require('cors')({
         origin: C.SERVER.CORS,
         optionsSuccessStatus: 200

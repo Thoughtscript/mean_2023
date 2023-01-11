@@ -13,6 +13,7 @@ const MONGODB_PASSWORD = 'testpass'
 
 module.exports = {
     SERVER: {
+        CORS: 'http://localhost:4200',
         HTTPS_PORT: 8888,
         SSL: {
             KEY_PATH: '../auth/key.pem',

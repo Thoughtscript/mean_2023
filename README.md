@@ -27,8 +27,9 @@ openssl req -x509 -sha256 -days 365 -key key.pem -in csr.csr -out certificate.pe
 ```BASH
 docker-compose up -d
 
-bash ./bin/spinup.sh
-bash ./bin/stop.sh
+cd bin
+bash spinup.sh
+bash stop.sh
 ```
 
 ## Endpoints

@@ -50,8 +50,7 @@ module.exports = {
     },
 
     Q_COL: async (collection) => {
-        let client = await getClient()
-        let db = await client.db(C.DB.DEFAULT_DB)
+        let db = await getDb()
         await db.createCollection(collection)
     },
 
