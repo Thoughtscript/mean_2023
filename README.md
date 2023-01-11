@@ -25,16 +25,22 @@ openssl req -x509 -sha256 -days 365 -key key.pem -in csr.csr -out certificate.pe
 ## Commands
 
 ```BASH
+# Spin up DB and volume
+cd mongo
 docker-compose up -d
 
-cd bin
+# Spin up frontend and backend apps
+cd ../bin
 bash spinup.sh
+# And shut them down
 bash stop.sh
 ```
 
+> I've separated these to keep the same Mongo instance up *and* running.
+
 ## Endpoints
 
-1. https://localhost:8888/api
+1. https://localhost:8888/api/events
 2. http://localhost:4200/ 
 
 
